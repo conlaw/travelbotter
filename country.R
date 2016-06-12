@@ -183,5 +183,8 @@ worldB <- str_replace_all(world, "-", " ")
 worldB <- str_replace_all(worldB, "\\bthe", "")
 worldB <- str_trim(worldB)
 
+world <- c(world, "myanmar-burma", "myanmar-burma", "east-timor")
+worldB <- c(worldB, "myanmar", "burma", "timor este")
+
 country <- data.frame(country = worldB, countryLP = world)
 save(country, "country.RData")
