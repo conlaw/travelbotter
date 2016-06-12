@@ -4,6 +4,7 @@ library(rvest)
 
 #gets a country and returns its LP URL
 nameToLP  <- function(feed){
+  #loads in the country data with country names and their LP url tag
   load("country.RData")
   countryCodes <- vector()
   j<- 1
@@ -14,25 +15,29 @@ nameToLP  <- function(feed){
       j <- j +1
     }
   }
+  #Returns no match if there's no match
   if(length(countryCodes)==0){
     return("No Match!")
   }
-  #crafts the URLs
+  #Otherwise, it crafts the URLs
   paste("https://www.lonelyplanet.com/", countryCodes, sep="")
 }
 
 #Given a url for a country - returns a tweet with a recommended activity
 tweetGenerator <- function(url){
-  if(url=="No Match!" | is.null(url) | is.na(url)){
+  #if there's no match it returns such
+  if(url=="No Match!"){
     return("I have no clue where you're talking about, but I'm sure it's awesome!")
   }
   #Use RSelenium to get the html for a dynamically loaded page
+  #opens a browser and navigates to the LP page
   startServer()
   browser <- remoteDriver()
   browser$open()
   browser$navigate(url)
   #gets HTML 
   page <- browser$getPageSource()
+  #closes the browser
   browser$close()
 
   #gets all the activities for the page
@@ -60,7 +65,9 @@ tweetGenerator <- function(url){
                           "My personal pick is the",
                           "No trip would be complete without a stop at the",
                           "I'd recommend you see the",
-                          "A highlight of any trip is definitely the"
+                          "A highlight of any trip is definitely the",
+                          "My mom raved about the",
+                          "My friend almost emigrated there just because of the"
   )
   #cobbles together a tweet
   tweet <- paste(possible_intros[sample(1:length(possible_intros),1)], site[1], "in", site[2], sep = " ")
@@ -71,10 +78,12 @@ tweetGenerator <- function(url){
 #function that returns a vector of tweets to tweet out
 countryTweets <- function(feed){
   tweets <- vector()
+  #goes through each element of the feed and gets its url and generates a tweet
   for(i in 1:length(feed)){
     urls <- nameToLP(feed[i])
     tweets[i] <- paste(feed[i], "? ", tweetGenerator(urls[1]), sep="")
   }
+  #returns vector of tweets
   tweets
 }
 
