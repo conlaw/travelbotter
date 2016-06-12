@@ -1,6 +1,7 @@
 library(RSelenium)
 library(stringr)
 library(rvest)
+
 #gets vector of LP urls of the countries
 nameToLP  <- function(feed){
   load("country.RData")
@@ -20,7 +21,7 @@ nameToLP  <- function(feed){
 tweetGenerator <- function(url){
   #Use RSelenium to get the html for a dynamically loaded page
   startServer()
-  browser <- remoteDrive()
+  browser <- remoteDriver()
   browser$open()
   browser$navigate(url)
   page <- browser$getPageSource()
@@ -59,10 +60,11 @@ tweetGenerator <- function(url){
 }
 
 #function that returns a vector of tweets to tweet out
-countryTweets <- function(urls){
+countryTweets <- function(feed){
   tweets <- vector()
-  for(i in 1:length(urls)){
-    tweets[i] <- tweetGenerator(urls[i])
+  for(i in 1:length(feed)){
+    urls <- nameToLP(feed[i])
+    tweets[i] <- paste(feed[i], "? ", tweetGenerator(urls[i]), sep="")
   }
   tweets
 }
