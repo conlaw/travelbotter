@@ -30,7 +30,9 @@ vectorOfCities <- function(){
   # tweets of people tweeting at us with a city name
 
   tweets <- searchTwitteR("travelbotter", sinceID = last_tweet)
-
+  if(length(tweets) == 0){
+    return("No new tweets!")
+  }
   vector <- vector()
   numTweets <- length(tweets)
   for (i in 1:numTweets){
