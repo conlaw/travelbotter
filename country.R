@@ -1,5 +1,6 @@
 library(rvest)
 library(stringr)
+
 #gets all the african countries
 africa.raw <- read_html("http://www.lonelyplanet.com/places")
 text <- vector()
