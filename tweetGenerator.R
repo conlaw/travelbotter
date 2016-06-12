@@ -70,6 +70,9 @@ tweetGenerator <- function(url){
 
 #function that returns a vector of tweets to tweet out
 countryTweets <- function(feed){
+  if(feed == "No new tweets!"){
+    return(-1)
+  }
   tweets <- vector()
   for(i in 1:length(feed)){
     urls <- nameToLP(feed[i])
