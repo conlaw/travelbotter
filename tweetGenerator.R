@@ -9,7 +9,7 @@ nameToLP  <- function(feed){
   j<- 1
   #loop through the countries and adds country codes to countryCodes vectors
   for(i in 1:length(country$country)){
-    if(length(agrep(country$country[i], tolower(feed), max.distance = 0.01))!=0){
+    if(length(agrep(country$country[i], tolower(feed), max.distance = 0.001))!=0){
       countryCodes[j] <- as.character(country$countryLP[i])
       j <- j +1
     }

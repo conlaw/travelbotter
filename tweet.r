@@ -20,10 +20,11 @@ update <- function() {
   load("country.RData")
   rCity <- sample(1:nrow(country),1)
   intros <- c("Thinking about heading to ",
-              "Want somewhere new to fal in love with? How about ",
-              "Our new favorite country is ",
+              "Want somewhere new to fall in love with? How about ",
               "Starting to plan your next vacation to ",
               "Flying out to "
               )
-  msg2 <- tweet(paste(intros[sample(1:length(intros),1)], countryTweets(country$country[rCity]), sep=""))
+  country.init <- as.character(country$country[rCity])
+  countryFIN <- paste(toupper(substr(country.init,1,1)), substr(country.init, 2, nchar(country.init)), sep ="")
+  msg2 <- tweet(paste(intros[sample(1:length(intros),1)], countryTweets(countryFIN), sep=""))
 }
