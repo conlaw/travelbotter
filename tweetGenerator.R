@@ -2,28 +2,36 @@ library(RSelenium)
 library(stringr)
 library(rvest)
 
-#gets vector of LP urls of the countries
+#gets a country and returns its LP URL
 nameToLP  <- function(feed){
   load("country.RData")
-  countryTweets <- vector()
+  countryCodes <- vector()
   j<- 1
+  #loop through the countries and adds country codes to countryCodes vectors
   for(i in 1:length(country$country)){
-   if(length(agrep(country$country[i], feed))!=0){
-     countryTweets[j] <- as.character(country$countryLP[i])
-     j <- j +1
+    if(length(agrep(country$country[i], tolower(feed), max.distance = 0.01))!=0){
+      countryCodes[j] <- as.character(country$countryLP[i])
+      j <- j +1
     }
   }
-  urls <- paste("https://www.lonelyplanet.com/", countryTweets, sep="")
-  urls
+  if(length(countryCodes)==0){
+    return("No Match!")
+  }
+  #crafts the URLs
+  paste("https://www.lonelyplanet.com/", countryCodes, sep="")
 }
 
 #Given a url for a country - returns a tweet with a recommended activity
 tweetGenerator <- function(url){
+  if(url=="No Match!" | is.null(url) | is.na(url)){
+    return("I have no clue where you're talking about, but I'm sure it's awesome!")
+  }
   #Use RSelenium to get the html for a dynamically loaded page
   startServer()
   browser <- remoteDriver()
   browser$open()
   browser$navigate(url)
+  #gets HTML 
   page <- browser$getPageSource()
   browser$close()
 
@@ -37,6 +45,7 @@ tweetGenerator <- function(url){
   #cleans up the results so the end format is a list where each list element
   #has the 1st element as the attraction and the second element as the location
   tmp <- str_replace_all(res, "\n", "")
+  tmp <- str_replace_all(tmp, ",", "")
   tmp <- str_trim(tmp)
   tmp <- str_replace_all(str_replace_all(tmp, "&", "and"), "\\b \\b" , "-")
   tmp <- str_replace_all(tmp, "[ ]{2,}", " ")
@@ -64,7 +73,7 @@ countryTweets <- function(feed){
   tweets <- vector()
   for(i in 1:length(feed)){
     urls <- nameToLP(feed[i])
-    tweets[i] <- paste(feed[i], "? ", tweetGenerator(urls[i]), sep="")
+    tweets[i] <- paste(feed[i], "? ", tweetGenerator(urls[1]), sep="")
   }
   tweets
 }
