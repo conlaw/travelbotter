@@ -11,14 +11,15 @@ getCity <- function(tweetList, numTweet){
 
 get_ID_last_tweet <- function(){
   # Retrieves all tweets with our name in it
-  tweets <- searchTwitter("twitterTravelBot")
+  tweets <- searchTwitter("Ji10TheRobhatt")
   # Gets a vector showing TRUE for all tweets that we tweeted out
-  ourTweets <- sapply(tweets, function(n) n$getScreenName() == "twitterTravelBot")
+  ourTweets <- sapply(tweets, function(n) n$getScreenName() == "Ji10TheRobhatt")
   # Returns a list of only the tweets we tweeted out
   ourTweets <- tweets[ourTweets]
   # returns a list of the ids for our tweets
-  IDs <- (lapply(ourTweets, function(n) n$id)) %>% unlist() %>% as.numeric()
+  IDs <- as.numeric(unlist(lapply(ourTweets, function(n) n$id)))
   last_tweet_id <- max(IDs)
+  return(last_tweet_id)
 }
 
 
@@ -27,17 +28,16 @@ vectorOfCities <- function(){
   last_tweet <- get_ID_last_tweet()
   # gets all the tweets since the last time we tweeted, which will be all
   # tweets of people tweeting at us with a city name
-  tweets <- searchTwitter("@twitterTravelBot", sinceID = last_tweet)
+  tweets <- searchTwitter("@Ji10TheRobhatt", sinceID = last_tweet)
     
-  vector <- c()
+  vector <- vector()
   numTweets <- length(tweets)
   for (i in 1:numTweets){
     city <- getCity(tweets, i)
     vector[i] <- city
   }
   # return a vector of the cities that people have tweeted at us
-  vector
-  
+  return(vector)
 }
   
   
