@@ -21,10 +21,6 @@ update <- function() {
   rCity <- sample(1:nrow(country),1)
   intros <- c("Thinking about heading to ",
               "Want somewhere new to fall in love with? How about ",
-<<<<<<< HEAD
-=======
-              "Our new favorite country is ",
->>>>>>> 58856e9b7b399032774d5378af486b97f0bd62f1
               "Starting to plan your next vacation to ",
               "Flying out to "
               )
