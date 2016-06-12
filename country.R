@@ -175,7 +175,7 @@ tmp <- lapply(tmp, FUN = function(x) { x <- x[-1]})
 sAmerica <- unlist(tmp)
 
 
-##combines them all together
+#combines them all together
 world <- c(africa, asia, caribbean, cAmerica, europe, mEast, nAmerica, pacific, sAmerica)
 #cleans off the & sign
 world <- str_replace_all(world, "&", "and")
