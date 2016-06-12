@@ -28,13 +28,9 @@ vectorOfCities <- function(){
   last_tweet <- get_ID_last_tweet()
   # gets all the tweets since the last time we tweeted, which will be all
   # tweets of people tweeting at us with a city name
-<<<<<<< HEAD
+
   tweets <- searchTwitter("@travelbotter", sinceID = last_tweet)
-=======
-  tweets <- searchTwitter("@Ji10TheRobhatt")
-                        #  , sinceID = last_tweet)
->>>>>>> 9f99bf1b5d4949ca8d57e1fd3414530177f6deb4
-    
+
   vector <- vector()
   numTweets <- length(tweets)
   for (i in 1:numTweets){
