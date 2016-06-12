@@ -56,10 +56,10 @@ tweetGenerator <- function(url){
   num <- sample(1:length(tmp), 1)
   site <- tmp[[num]]
   #vector of possible tweet intros
-  possible_intros    <- c("You have to check out the",
+  possible_intros    <- c("Don't forget to visit the", "You have to check out the",
                           "My personal pick is the",
                           "No trip would be complete without a stop at the",
-                          "I'd recommend you see the",
+                          "I'd recommend you see the", "Definitely go to the", "I hear everyone likes visiting the",
                           "A highlight of any trip is definitely the"
   )
   #cobbles together a tweet

@@ -1,6 +1,6 @@
 library(twitteR)
 
-
+#gets substring of tweet up to @ symbol
 getCity <- function(tweetList, numTweet){
   content <- tweetList[[numTweet]]$getText()
   # finds location of first @ symbol
@@ -8,7 +8,7 @@ getCity <- function(tweetList, numTweet){
   str_sub(content, at_symbol) <- ""
   (content)
 }
-
+#gets the ID of the last tweet by travelbotter
 get_ID_last_tweet <- function(){
   # Retrieves all tweets with our name in it
   tweets <- searchTwitter("travelbotter")
@@ -40,6 +40,7 @@ vectorOfCities <- function(){
     vector[i] <- city
   }
   # return a vector of the cities that people have tweeted at us
+  # NOTE: currently only functions with countries, not cities
   return(vector)
 }
   
