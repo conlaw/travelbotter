@@ -65,7 +65,7 @@ tweetGenerator <- function(url){
   #cobbles together a tweet
   tweet <- paste(possible_intros[sample(1:length(possible_intros),1)], site[1], "in", site[2], sep = " ")
   tweet <- paste(tweet, "!", sep ="")
-  tweet
+  return(tweet)
 }
 
 #function that returns a vector of tweets to tweet out
@@ -75,6 +75,6 @@ countryTweets <- function(feed){
     urls <- nameToLP(feed[i])
     tweets[i] <- paste(feed[i], "? ", tweetGenerator(urls[1]), sep="")
   }
-  tweets
+  return(tweets)
 }
 
