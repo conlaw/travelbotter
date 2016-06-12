@@ -11,9 +11,9 @@ getCity <- function(tweetList, numTweet){
 
 get_ID_last_tweet <- function(){
   # Retrieves all tweets with our name in it
-  tweets <- searchTwitter("Ji10TheRobhatt")
+  tweets <- searchTwitter("travelbotter")
   # Gets a vector showing TRUE for all tweets that we tweeted out
-  ourTweets <- sapply(tweets, function(n) n$getScreenName() == "Ji10TheRobhatt")
+  ourTweets <- sapply(tweets, function(n) n$getScreenName() == "travelbotter")
   # Returns a list of only the tweets we tweeted out
   ourTweets <- tweets[ourTweets]
   # returns a list of the ids for our tweets
@@ -28,7 +28,7 @@ vectorOfCities <- function(){
   last_tweet <- get_ID_last_tweet()
   # gets all the tweets since the last time we tweeted, which will be all
   # tweets of people tweeting at us with a city name
-  tweets <- searchTwitter("@Ji10TheRobhatt", sinceID = last_tweet)
+  tweets <- searchTwitter("@travelbotter", sinceID = last_tweet)
     
   vector <- vector()
   numTweets <- length(tweets)

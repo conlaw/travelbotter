@@ -1,12 +1,13 @@
 library(twitteR)
  
   
-consumer_key = "HYSlogBpzHG4LGaoEbgb9aC3H"
-consumer_secret = "yGknkMJT1TylrJsO4t0ctJnNFAvpYHTOhQSgAJKV7yoe1lNQ2E"
-access_token = "740480338007339008-y2OHxVmnmlsmcWGci0fBNafvTprjzRb"
-access_secret = "5GBXCSVP29MxFRdKhfNW7qszHlRAkHRnwJctn5xh13ivh"
+consumer_key = "4KRnmqupgawz6TvfrfQvpw8Nb"
+consumer_secret = "c50I0xEl1YZGIPMEajrFNDo2KyVJDffFAfLiC5f74hAjaa4T6D"
+access_token = "742027849104797697-TjdkGQUK9LgQh8QOyf19TITqkzLuyCH"
+access_secret = "PqNFcgvmYpctoSQAbiqKBSfXFMjVqRL0qXKCEP0x1qWWq"
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
   
 msg <- lapply(countryTweets(vectorOfCities()),tweet)
-  
-#https://twitter.com/Ji10TheRobhatt
+load("country.RData")
+rCity <- sample(1:length(country),1)
+msg2 <- tweet(paste("Thinking about heading to ", countryTweets(country$country[rCity]), sep=""))
