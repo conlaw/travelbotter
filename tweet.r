@@ -20,7 +20,7 @@ update <- function() {
   load("country.RData")
   rCity <- sample(1:nrow(country),1)
   intros <- c("Thinking about heading to ",
-              "Want somewhere new to fal in love with? How about ",
+              "Want somewhere new to fall in love with? How about ",
               "Our new favorite country is ",
               "Starting to plan your next vacation to ",
               "Flying out to "
