@@ -29,12 +29,17 @@ vectorOfCities <- function(){
   # gets all the tweets since the last time we tweeted, which will be all
   # tweets of people tweeting at us with a city name
 
-  tweets <- searchTwitteR("travelbotter", sinceID = last_tweet)
-  if(length(tweets) == 0){
+  tweets <- searchTwitteR("travelbotter")
+  for(i in 1:length(tweets)){
+    if(tweets[[i]]$screenName == "travelbotter"){
+      numTweets <- i-1
+      break
+    }
+  }
+  if(numTweets == 0){
     return("No new tweets!")
   }
   vector <- vector()
-  numTweets <- length(tweets)
   for (i in 1:numTweets){
     city <- getCity(tweets, i)
     vector[i] <- city

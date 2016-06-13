@@ -70,7 +70,7 @@ tweetGenerator <- function(url){
 
 #function that returns a vector of tweets to tweet out
 countryTweets <- function(feed){
-  if(feed == "No new tweets!"){
+  if(feed[1] == "No new tweets!"){
     return(-1)
   }
   tweets <- vector()

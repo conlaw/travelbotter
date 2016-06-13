@@ -2,10 +2,10 @@ library(twitteR)
 
 #creates and authenticates the twitter credentials for the bot
 loadCredentials <- function(){
-  consumer_key = "4KRnmqupgawz6TvfrfQvpw8Nb"
-  consumer_secret = "c50I0xEl1YZGIPMEajrFNDo2KyVJDffFAfLiC5f74hAjaa4T6D"
-  access_token = "742027849104797697-TjdkGQUK9LgQh8QOyf19TITqkzLuyCH"
-  access_secret = "PqNFcgvmYpctoSQAbiqKBSfXFMjVqRL0qXKCEP0x1qWWq"
+  consumer_key <- "qtcMzwbF31PtzFeQwPEYjJpD3"
+  consumer_secret <- "F6swyv8ld9CY39A8hUBvjDFF20OzIapCncGklJ4eCkwFWOduBu"
+  access_token <- "742027849104797697-2VDzpR5VDTYkFfjAOW9gz2wPfWcgeFS"
+  access_secret <- "NbNtX3Vh3HoaLDnYCRpFBxssSFdgrsLbk2lZFMpLZFXDh"
   setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 }
 
